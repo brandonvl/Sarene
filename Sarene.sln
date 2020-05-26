@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FA642078-44DF-4317-BFBF-68260385FE61}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sarene.MapEditor", "src\Sarene.MapEditor\Sarene.MapEditor.vcxproj", "{C435172D-48B8-4704-95D3-4682A4909D5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Debug|x64.ActiveCfg = Debug|x64
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Debug|x64.Build.0 = Debug|x64
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Debug|x86.ActiveCfg = Debug|Win32
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Debug|x86.Build.0 = Debug|Win32
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Release|x64.ActiveCfg = Release|x64
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Release|x64.Build.0 = Release|x64
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Release|x86.ActiveCfg = Release|Win32
+		{C435172D-48B8-4704-95D3-4682A4909D5A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C435172D-48B8-4704-95D3-4682A4909D5A} = {FA642078-44DF-4317-BFBF-68260385FE61}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D5FB34B-B039-49E5-8347-ABE89A58B146}
+	EndGlobalSection
+EndGlobal
