@@ -11,4 +11,3 @@ namespace Sarene
 		void Run();
 	};
 }
-

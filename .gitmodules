@@ -1,0 +1,3 @@
+[submodule "Sarene/vendor/spglog"]
+	path = Sarene/vendor/spglog
+	url = git@github.com:gabime/spdlog.git
