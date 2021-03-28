@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Log.h"
+#include "Events/ApplicationEvent.h"
 
 namespace Sarene
 {
@@ -15,6 +16,8 @@ namespace Sarene
 
 	void Application::Run()
 	{
+		WindowResizeEvent e(1200, 720);
+		SAR_LOG_INFO(e);
 		while (true);
 	}
 }

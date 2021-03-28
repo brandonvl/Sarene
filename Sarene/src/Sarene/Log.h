@@ -1,6 +1,10 @@
 #pragma once
 
-#include "spdlog/spdlog.h"
+// This ignores all warnings raised inside External headers
+#pragma warning(push, 0)
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+#pragma warning(pop)
 
 namespace Sarene
 {
@@ -22,4 +26,4 @@ namespace Sarene
 #define SAR_LOG_INFO(...)		::Sarene::Log::GetLogger()->info(__VA_ARGS__)
 #define SAR_LOG_WARN(...)		::Sarene::Log::GetLogger()->warn(__VA_ARGS__)
 #define SAR_LOG_ERROR(...)		::Sarene::Log::GetLogger()->error(__VA_ARGS__)
-#define SAR_LOG_FATAL(...)		::Sarene::Log::GetLogger()->fatal(__VA_ARGS__)
+#define SAR_LOG_FATAL(...)		::Sarene::Log::GetLogger()->critical(__VA_ARGS__)
