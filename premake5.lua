@@ -18,6 +18,10 @@ project "Sarene"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+
+	pchheader "sarpch.h"
+	pchsource "Sarene/src/sarpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

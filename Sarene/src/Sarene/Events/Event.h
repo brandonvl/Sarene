@@ -2,9 +2,6 @@
 
 #include "Sarene/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Sarene
 {
 	enum class EventType
