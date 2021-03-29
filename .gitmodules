@@ -1,3 +1,6 @@
 [submodule "Sarene/vendor/spdlog"]
 	path = Sarene/vendor/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "Sarene/vendor/glfw"]
+	path = Sarene/vendor/glfw
+	url = git@github.com:brandonvl/glfw.git
