@@ -10,6 +10,12 @@ workspace "Sarene"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Sarene/vendor/glfw/include"
+
+include "Sarene/vendor/glfw"
+
 project "Sarene"
 	location "Sarene"
 	kind "ConsoleApp"
@@ -31,7 +37,14 @@ project "Sarene"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%IncludeDir.GLFW"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
