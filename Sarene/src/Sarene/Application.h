@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
-#include "Sarene/Events/ApplicationEvent.h"
 
 #include "Window.h"
+#include "Sarene/LayerStack.h"
+#include "Events/Event.h"
+#include "Sarene/Events/ApplicationEvent.h"
 
 namespace Sarene
 {
@@ -16,11 +17,15 @@ namespace Sarene
 
 		void Run();
 
-		void OnEvent(Event &e);
+		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
 	private:
-		bool OnWindowClose(WindowCloseEvent &e);
+		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 }

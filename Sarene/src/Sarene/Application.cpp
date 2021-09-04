@@ -17,12 +17,29 @@ namespace Sarene
 
 	}
 
-	void Application::OnEvent(Event &e)
+	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		SAR_LOG_TRACE("{0}", e);
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
 	}
 
 	void Application::Run()
@@ -30,16 +47,40 @@ namespace Sarene
 		while (m_Running)
 		{
 			m_Window->OnUpdate();
+
+			for (auto layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
 		}
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent &e)
+	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
 		return true;
 	}
 }
 
+class ExampleLayer : public Sarene::Layer
+{
+public:
+	ExampleLayer()
+		: Layer("Example")
+	{
+
+	}
+
+	void OnUpdate() override
+	{
+		SAR_LOG_INFO("ExampleLayer::OnUpdate");
+	}
+
+	void OnEvent(Sarene::Event& event) override
+	{
+		SAR_LOG_TRACE("{0}", event);
+	}
+};
 
 // Fine for now, rework later
 int main()
@@ -47,7 +88,8 @@ int main()
 	Sarene::Log::Init();
 	SAR_LOG_INFO("Inialized logger!");
 
-	Sarene::Application *app = new Sarene::Application();
+	Sarene::Application* app = new Sarene::Application();
+	app->PushLayer(new ExampleLayer());
 	app->Run();
 	delete app;
 }

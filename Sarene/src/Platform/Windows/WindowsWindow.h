@@ -6,48 +6,48 @@
 
 namespace Sarene
 {
-    class WindowsWindow : public Window
-    {
-    public:
-        WindowsWindow(const WindowProps &props);
-        virtual ~WindowsWindow();
+	class WindowsWindow : public Window
+	{
+	public:
+		WindowsWindow(const WindowProps& props);
+		virtual ~WindowsWindow();
 
-        virtual void OnUpdate() override;
+		virtual void OnUpdate() override;
 
-        inline unsigned int GetWidth() const override
-        {
-            return m_Data.Width;
-        }
+		inline unsigned int GetWidth() const override
+		{
+			return m_Data.Width;
+		}
 
-        inline unsigned int GetHeight() const override
-        {
-            return m_Data.Height;
-        }
+		inline unsigned int GetHeight() const override
+		{
+			return m_Data.Height;
+		}
 
-        inline void SetEventCallback(const EventCallbackFn &callback) override
-        {
-            m_Data.EventCallback = callback;
-        }
+		inline void SetEventCallback(const EventCallbackFn& callback) override
+		{
+			m_Data.EventCallback = callback;
+		}
 
-        void SetVSync(bool enabled);
-        bool IsVSync() const;
+		void SetVSync(bool enabled);
+		bool IsVSync() const;
 
-    private:
-        virtual void Init(const WindowProps &props);
-        virtual void Shutdown();
+	private:
+		virtual void Init(const WindowProps& props);
+		virtual void Shutdown();
 
-        GLFWwindow *m_Window;
+		GLFWwindow* m_Window;
 
-        struct WindowData
-        {
-            std::string Title;
-            unsigned int Width, Height;
-            bool VSync;
+		struct WindowData
+		{
+			std::string Title;
+			unsigned int Width, Height;
+			bool VSync;
 
-            EventCallbackFn EventCallback;
-        };
+			EventCallbackFn EventCallback;
+		};
 
-        WindowData m_Data;
-    };
+		WindowData m_Data;
+	};
 }
 

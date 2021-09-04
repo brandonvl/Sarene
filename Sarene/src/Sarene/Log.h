@@ -13,7 +13,7 @@ namespace Sarene
 	public:
 		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger> &GetLogger()
+		inline static std::shared_ptr<spdlog::logger>& GetLogger()
 		{
 			return s_Logger;
 		};
