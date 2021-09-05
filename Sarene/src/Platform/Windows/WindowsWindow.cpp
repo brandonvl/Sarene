@@ -5,6 +5,8 @@
 #include "Sarene/Events/MouseEvent.h"
 #include "Sarene/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace Sarene
 {
 	static bool s_GLFWInitialized = false;
@@ -48,6 +50,8 @@ namespace Sarene
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		SAR_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
