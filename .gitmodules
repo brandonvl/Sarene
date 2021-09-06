@@ -4,3 +4,6 @@
 [submodule "Sarene/vendor/glfw"]
 	path = Sarene/vendor/glfw
 	url = git@github.com:brandonvl/glfw.git
+[submodule "Sarene/vendor/imgui"]
+	path = Sarene/vendor/imgui
+	url = https://github.com/brandonvl/imgui

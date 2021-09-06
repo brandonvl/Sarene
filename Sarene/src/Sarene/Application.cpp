@@ -1,13 +1,19 @@
 #include "sarpch.h"
 
 #include "Application.h"
+#include "Sarene/ImGui/ImGuiLayer.h"
 
 namespace Sarene
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		SAR_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
@@ -90,6 +96,7 @@ int main()
 
 	Sarene::Application* app = new Sarene::Application();
 	app->PushLayer(new ExampleLayer());
+	app->PushLayer(new Sarene::ImGuiLayer());
 	app->Run();
 	delete app;
 }
