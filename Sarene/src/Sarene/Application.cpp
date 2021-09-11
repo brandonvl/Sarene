@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "Sarene/ImGui/ImGuiLayer.h"
 
+#include <glad/glad.h>
+
 namespace Sarene
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -52,12 +54,15 @@ namespace Sarene
 	{
 		while (m_Running)
 		{
-			m_Window->OnUpdate();
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (auto layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
+
+			m_Window->OnUpdate();
 		}
 	}
 

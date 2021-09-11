@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Sarene/Layer.h"
+#include "Sarene/Events/ApplicationEvent.h"
+#include "Sarene/Events/KeyEvent.h"
+#include "Sarene/Events/MouseEvent.h"
 
 namespace Sarene
 {
@@ -17,6 +20,15 @@ namespace Sarene
 
     private:
         float m_Time = 0.0f;
+
+        bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
+        bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
+        bool OnMouseMovedEvent(MouseMovedEvent& e);
+        bool OnMouseScrolledEvent(MouseScrolledEvent& e);
+        bool OnKeyPressedEvent(KeyPressedEvent& e);
+        bool OnKeyTypedEvent(KeyTypedEvent& e);
+        bool OnKeyReleasedEvent(KeyReleasedEvent& e);
+        bool OnWindowResizeEvent(WindowResizeEvent& e);
     };
 }
 

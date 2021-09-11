@@ -11,3 +11,5 @@ constexpr auto BIT(T x)
 {
 	return (1 << x);
 }
+
+#define SAR_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

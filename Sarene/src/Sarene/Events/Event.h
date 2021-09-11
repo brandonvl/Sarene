@@ -9,7 +9,7 @@ namespace Sarene
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -64,6 +64,8 @@ namespace Sarene
 				m_Event.Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
+
+			return false;
 		}
 
 	private:
