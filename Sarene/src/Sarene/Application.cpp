@@ -72,16 +72,3 @@ namespace Sarene
 		return true;
 	}
 }
-
-// Fine for now, rework later
-/*int main()
-{
-	Sarene::Log::Init();
-	SAR_LOG_INFO("Inialized logger!");
-
-	Sarene::Application* app = new Sarene::Application();
-	app->PushLayer(new ExampleLayer());
-	app->PushLayer(new Sarene::ImGuiLayer());
-	app->Run();
-	delete app;
-}*/
