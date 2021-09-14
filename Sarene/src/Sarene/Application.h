@@ -40,4 +40,7 @@ namespace Sarene
 
 		static Application* s_Instance;
 	};
+
+	// Define in Client
+	Application* CreateApplication();
 }

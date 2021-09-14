@@ -1,5 +1,6 @@
 workspace "Sarene"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -21,62 +22,119 @@ include "Sarene/vendor/glad"
 include "Sarene/vendor/imgui"
 
 project "Sarene"
-	location "Sarene"
-	kind "ConsoleApp"
-	language "C++"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-
-	pchheader "sarpch.h"
-	pchsource "Sarene/src/sarpch.cpp"
-
-	files
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
-
-	includedirs
-	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.Imgui}"
-	}
-
-	links
-	{
-		"GLFW",
-		"Glad",
-		"Imgui",
-		"opengl32.lib"
-	}
-
-	filter "system:windows"
+		location "Sarene"
+		kind "StaticLib"
+		language "C++"
 		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "latest"
+		staticruntime "on"
+
+		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+
+		pchheader "sarpch.h"
+		pchsource "Sarene/src/sarpch.cpp"
+
+		files
+		{
+			"%{prj.name}/src/**.h",
+			"%{prj.name}/src/**.cpp"
+		}
 
 		defines
 		{
-			"GLFW_INCLUDE_NONE"
+			"_CRT_SECURE_NO_WARNINGS"
 		}
 
+		includedirs
+		{
+			"%{prj.name}/src",
+			"%{prj.name}/vendor/spdlog/include",
+			"%{IncludeDir.GLFW}",
+			"%{IncludeDir.Glad}",
+			"%{IncludeDir.Imgui}"
+		}
 
-	filter "configurations:Debug"
-		defines "SAR_DEBUG"
-		buildoptions "/MTd"
-		symbols "On"
+		links
+		{
+			"GLFW",
+			"Glad",
+			"Imgui",
+			"opengl32.lib"
+		}
 
-	filter "configurations:Release"
-		defines "SAR_RELEASE"
-		buildoptions "/MT"
-		optimize "On"
+		filter "system:windows"
+			systemversion "latest"
 
-	filter "configurations:Dist"
-		defines "SAR_DIST"
-		buildoptions "/MT"
-		optimize "On"
+			defines
+			{
+				"SAR_PLATFORM_WINDOWS",
+				"GLFW_INCLUDE_NONE"
+			}
+
+
+		filter "configurations:Debug"
+			defines "SAR_DEBUG"
+			runtime "Debug"
+			symbols "On"
+
+		filter "configurations:Release"
+			defines "SAR_RELEASE"
+			runtime "Release"
+			optimize "On"
+
+		filter "configurations:Dist"
+			defines "SAR_DIST"
+			runtime "Release"
+			optimize "On"
+
+project "Sandbox"
+		location "Sandbox"
+		kind "ConsoleApp"
+		language "C++"
+		cppdialect "C++17"
+		staticruntime "on"
+
+		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+		files
+		{
+			"%{prj.name}/src/**.h",
+			"%{prj.name}/src/**.cpp"
+		}
+
+		includedirs
+		{
+			"Sarene/vendor/spdlog/include",
+			"Sarene/src",
+			"Sarene/vendor"
+		}
+
+		links
+		{
+			"Sarene"
+		}
+
+		filter "system:windows"
+			systemversion "latest"
+
+			defines
+			{
+				"SAR_PLATFORM_WINDOWS"
+			}
+
+		filter "configurations:Debug"
+			defines "SAR_DEBUG"
+			runtime "Debug"
+			symbols "on"
+
+		filter "configurations:Release"
+			defines "SAR_RELEASE"
+			runtime "Release"
+			optimize "on"
+
+		filter "configurations:Dist"
+			defines "SAR_DIST"
+			runtime "Release"
+			optimize "on"

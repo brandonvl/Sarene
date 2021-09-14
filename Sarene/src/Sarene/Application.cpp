@@ -73,28 +73,8 @@ namespace Sarene
 	}
 }
 
-class ExampleLayer : public Sarene::Layer
-{
-public:
-	ExampleLayer()
-		: Layer("Example")
-	{
-
-	}
-
-	void OnUpdate() override
-	{
-		SAR_LOG_INFO("ExampleLayer::OnUpdate");
-	}
-
-	void OnEvent(Sarene::Event& event) override
-	{
-		SAR_LOG_TRACE("{0}", event);
-	}
-};
-
 // Fine for now, rework later
-int main()
+/*int main()
 {
 	Sarene::Log::Init();
 	SAR_LOG_INFO("Inialized logger!");
@@ -104,4 +84,4 @@ int main()
 	app->PushLayer(new Sarene::ImGuiLayer());
 	app->Run();
 	delete app;
-}
+}*/
