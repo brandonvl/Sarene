@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Sarene/vendor/glfw/include"
 IncludeDir["Glad"] = "Sarene/vendor/glad/include"
 IncludeDir["Imgui"] = "Sarene/vendor/imgui"
+IncludeDir["glm"] = "Sarene/vendor/glm"
 
 include "Sarene/vendor/glfw"
 include "Sarene/vendor/glad"
@@ -38,7 +39,9 @@ project "Sarene"
 		files
 		{
 			"%{prj.name}/src/**.h",
-			"%{prj.name}/src/**.cpp"
+			"%{prj.name}/src/**.cpp",
+			"%{prj.name}/vendor/glm/glm/**.hpp",
+			"%{prj.name}/vendor/glm/glm/**.inl"
 		}
 
 		defines
@@ -52,7 +55,8 @@ project "Sarene"
 			"%{prj.name}/vendor/spdlog/include",
 			"%{IncludeDir.GLFW}",
 			"%{IncludeDir.Glad}",
-			"%{IncludeDir.Imgui}"
+			"%{IncludeDir.Imgui}",
+			"%{IncludeDir.glm}"
 		}
 
 		links
@@ -108,7 +112,8 @@ project "Sandbox"
 		{
 			"Sarene/vendor/spdlog/include",
 			"Sarene/src",
-			"Sarene/vendor"
+			"Sarene/vendor",
+			"%{IncludeDir.glm}"
 		}
 
 		links
