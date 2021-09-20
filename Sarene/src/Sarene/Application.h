@@ -7,6 +7,8 @@
 #include "Events/Event.h"
 #include "Sarene/Events/ApplicationEvent.h"
 
+#include "Sarene/ImGui/ImGuiLayer.h"
+
 namespace Sarene
 {
 	class Application
@@ -35,6 +37,7 @@ namespace Sarene
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

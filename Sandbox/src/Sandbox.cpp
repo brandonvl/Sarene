@@ -17,6 +17,13 @@ public:
 			SAR_LOG_TRACE("Tab key is pressed (poll)!");
 		}
 	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
 };
 
 class Sandbox : public Sarene::Application
@@ -25,7 +32,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Sarene::ImGuiLayer());
 	}
 
 	~Sandbox()
