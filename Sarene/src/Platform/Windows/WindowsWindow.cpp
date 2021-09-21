@@ -5,7 +5,7 @@
 #include "Sarene/Events/MouseEvent.h"
 #include "Sarene/Events/KeyEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Sarene
 {
@@ -13,7 +13,7 @@ namespace Sarene
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		SAR_LOG_ERROR("GLFW Error ({0}): {1}", error, description);
+		SAR_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	Window* Window::Create(const WindowProps& props)
@@ -37,23 +37,24 @@ namespace Sarene
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		SAR_LOG_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+		SAR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			SAR_ASSERT(success, "Could not initialize GLFW!");
+			SAR_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		SAR_ASSERT(status, "Failed to initialize Glad!");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
+		SetVSync(false);
 
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
@@ -150,12 +151,13 @@ namespace Sarene
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
+		delete m_Context;
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

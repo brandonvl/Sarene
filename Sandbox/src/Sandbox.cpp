@@ -14,7 +14,7 @@ public:
 	{
 		if (Sarene::Input::IsKeyPressed(SAR_KEY_TAB))
 		{
-			SAR_LOG_TRACE("Tab key is pressed (poll)!");
+			SAR_TRACE("Tab key is pressed (poll)!");
 		}
 	}
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core.h"
 // This ignores all warnings raised inside External headers
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>
@@ -13,17 +14,28 @@ namespace Sarene
 	public:
 		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetLogger()
+		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger()
 		{
-			return s_Logger;
-		};
+			return s_CoreLogger;
+		}
+		inline static std::shared_ptr<spdlog::logger>& GetClientLogger()
+		{
+			return s_ClientLogger;
+		}
 	private:
-		static std::shared_ptr<spdlog::logger> s_Logger;
+		static std::shared_ptr<spdlog::logger> s_CoreLogger;
+		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 	};
 }
 
-#define SAR_LOG_TRACE(...)		::Sarene::Log::GetLogger()->trace(__VA_ARGS__)
-#define SAR_LOG_INFO(...)		::Sarene::Log::GetLogger()->info(__VA_ARGS__)
-#define SAR_LOG_WARN(...)		::Sarene::Log::GetLogger()->warn(__VA_ARGS__)
-#define SAR_LOG_ERROR(...)		::Sarene::Log::GetLogger()->error(__VA_ARGS__)
-#define SAR_LOG_FATAL(...)		::Sarene::Log::GetLogger()->critical(__VA_ARGS__)
+#define SAR_CORE_TRACE(...)		::Sarene::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define SAR_CORE_INFO(...)		::Sarene::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define SAR_CORE_WARN(...)		::Sarene::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define SAR_CORE_ERROR(...)		::Sarene::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define SAR_CORE_FATAL(...)		::Sarene::Log::GetCoreLogger()->critical(__VA_ARGS__)
+
+#define SAR_TRACE(...)		::Sarene::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define SAR_INFO(...)		::Sarene::Log::GetClientLogger()->info(__VA_ARGS__)
+#define SAR_WARN(...)		::Sarene::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define SAR_ERROR(...)		::Sarene::Log::GetClientLogger()->error(__VA_ARGS__)
+#define SAR_FATAL(...)		::Sarene::Log::GetClientLogger()->critical(__VA_ARGS__)

@@ -1,8 +1,15 @@
 #pragma once
 
+
+#ifdef SAR_DEBUG
+	#define SAR_ENABLE_ASSERTS
+#endif
+
 #ifdef SAR_ENABLE_ASSERTS
-#define SAR_ASSERT(x, ...) { if(!(x)) { SAR_LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define SAR_CORE_ASSERT(x, ...) { if(!(x)) { SAR_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define SAR_ASSERT(x, ...) { if(!(x)) { SAR_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
+#define SAR_CORE_ASSERT(x, ...)
 #define SAR_ASSERT(x, ...)
 #endif
 
