@@ -11,6 +11,7 @@
 
 #include "Sarene/Renderer/Shader.h"
 #include "Sarene/Renderer/Buffer.h"
+#include "Sarene/Renderer/VertexArray.h"
 
 namespace Sarene
 {
@@ -44,10 +45,11 @@ namespace Sarene
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 
 		static Application* s_Instance;
 	};
