@@ -10,8 +10,8 @@ namespace Sarene
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:    SAR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::OpenGL:  return new OpenGLVertexArray();
+			case RendererAPI::API::None:    SAR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return new OpenGLVertexArray();
 		}
 
 		SAR_CORE_ASSERT(false, "Unknown RendererAPI!");
