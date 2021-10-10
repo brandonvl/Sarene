@@ -8,9 +8,4 @@ namespace Sarene
 	{
 
 	}
-
-	Layer::~Layer()
-	{
-
-	}
 }
