@@ -7,13 +7,8 @@
 #include "Events/Event.h"
 #include "Sarene/Events/ApplicationEvent.h"
 
+#include "Sarene/Core/Timestep.h"
 #include "Sarene/ImGui/ImGuiLayer.h"
-
-#include "Sarene/Renderer/Shader.h"
-#include "Sarene/Renderer/Buffer.h"
-#include "Sarene/Renderer/VertexArray.h"
-
-#include "Renderer/OrthographicCamera.h"
 
 namespace Sarene
 {
@@ -46,14 +41,7 @@ namespace Sarene
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.0f;
 
 		static Application* s_Instance;
 	};

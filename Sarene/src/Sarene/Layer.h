@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sarene/Core.h"
+#include "Sarene/Core/Timestep.h"
 #include "Sarene/Events/Event.h"
 
 namespace Sarene
@@ -17,7 +18,7 @@ namespace Sarene
 		virtual void OnDetach()
 		{
 		}
-		virtual void OnUpdate()
+		virtual void OnUpdate(Timestep ts)
 		{
 		}
 		virtual void OnImGuiRender()
