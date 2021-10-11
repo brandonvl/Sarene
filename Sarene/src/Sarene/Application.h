@@ -13,6 +13,8 @@
 #include "Sarene/Renderer/Buffer.h"
 #include "Sarene/Renderer/VertexArray.h"
 
+#include "Renderer/OrthographicCamera.h"
+
 namespace Sarene
 {
 	class Application
@@ -50,6 +52,8 @@ namespace Sarene
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
