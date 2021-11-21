@@ -17,7 +17,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Sarene::VertexBuffer> vertexBuffer;
+		Sarene::Ref<Sarene::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Sarene::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Sarene::BufferLayout layout = {
@@ -29,7 +29,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		unsigned int indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Sarene::IndexBuffer> indexBuffer;
+		Sarene::Ref<Sarene::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Sarene::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -42,7 +42,7 @@ public:
 			-0.75f,  0.75f, 0.0f
 		};
 
-		std::shared_ptr<Sarene::VertexBuffer> squareVB;
+		Sarene::Ref<Sarene::VertexBuffer> squareVB;
 		squareVB.reset(Sarene::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 				{ Sarene::ShaderDataType::Float3, "a_Position" }
@@ -50,7 +50,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Sarene::IndexBuffer> squareIB;
+		Sarene::Ref<Sarene::IndexBuffer> squareIB;
 		squareIB.reset(Sarene::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -176,11 +176,11 @@ public:
 
 	}
 private:
-	std::shared_ptr<Sarene::Shader> m_Shader;
-	std::shared_ptr<Sarene::VertexArray> m_VertexArray;
+	Sarene::Ref<Sarene::Shader> m_Shader;
+	Sarene::Ref<Sarene::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Sarene::Shader> m_BlueShader;
-	std::shared_ptr<Sarene::VertexArray> m_SquareVA;
+	Sarene::Ref<Sarene::Shader> m_BlueShader;
+	Sarene::Ref<Sarene::VertexArray> m_SquareVA;
 
 	Sarene::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

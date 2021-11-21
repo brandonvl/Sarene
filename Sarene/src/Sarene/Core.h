@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 
 #ifdef SAR_DEBUG
 	#define SAR_ENABLE_ASSERTS
@@ -20,3 +21,12 @@ constexpr auto BIT(T x)
 }
 
 #define SAR_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Sarene
+{
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}
