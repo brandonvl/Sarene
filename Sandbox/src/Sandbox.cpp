@@ -89,7 +89,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Sarene::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Sarene::Shader::Create(vertexSrc, fragmentSrc));
 
 		std::string blueShaderVertexSrc = R"(
 			#version 330 core
@@ -121,7 +121,7 @@ public:
 			}
 		)";
 
-		m_BlueShader.reset(new Sarene::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		m_BlueShader.reset(Sarene::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
 	void OnUpdate(Sarene::Timestep ts) override
