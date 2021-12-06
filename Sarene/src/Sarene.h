@@ -20,6 +20,7 @@
 
 #include "Sarene/Renderer/Buffer.h"
 #include "Sarene/Renderer/Shader.h"
+#include "Sarene/Renderer/Texture.h"
 #include "Sarene/Renderer/VertexArray.h"
 
 #include "Sarene/Renderer/OrthographicCamera.h"
